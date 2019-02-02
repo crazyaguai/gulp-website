@@ -1,0 +1,16 @@
+@import "./common/_reset";
+.language{
+    font-size: 18px;
+    text-align: center;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .text{
+        font-size: 30px;
+        text-align: center;
+        color: blue;
+    }
+}
+
