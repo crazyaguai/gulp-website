@@ -46,7 +46,6 @@ npm run build
 ```
 <img src="../imgs/123.jpeg" alt="">
 ```
-- 注意：imgs文件夹中只支持二级文件夹，可以修改/task/img.js中的配置
 
 #### 项目结构
 ```
