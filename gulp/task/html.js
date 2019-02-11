@@ -6,11 +6,12 @@ var data = require('gulp-data')
 var ejs = require('gulp-ejs')
 var rename = require("gulp-rename");
 
+//html入口文件
 let htmlConfig = [
     {
         entry: 'src/html/index.html',
-        name: 'index.html',
-        lang: 'zh-cn'
+        name: 'index.html',//打包后文件名
+        lang: 'zh-cn'//ejs配置文件，对应/src/lang下的json文件
     },
     {
         entry: 'src/html/index.html',

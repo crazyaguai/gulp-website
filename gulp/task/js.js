@@ -21,6 +21,7 @@ var devServer = false
 
 var bundleArr = {}
 
+//js入口文件
 let entries = [
     {
         name: 'index',
@@ -54,6 +55,11 @@ function bundle(name,entry){
         .pipe(gulpif(devServer,global.browserSync.reload({stream: true})))
 }
 
+//开发环境
+let devArrFun = entries.map(i=>{
+    return devFun.bind(null,i.name,i.entry)
+})
+
 function devFun(name,entry) {
 
     devServer = true
@@ -62,20 +68,18 @@ function devFun(name,entry) {
 
     b.plugin(watchify);
 
+    //文件变化重新打包js
     b.on('update',bundle.bind(null,name,entry))
 
     return bundle(name,entry)
 }
 
+//生产环境打包
 let prodArrFun = entries.map(i=>{
     return bundle.bind(null,i.name,i.entry)
 })
 
 gulp.task('js',gulp.parallel(prodArrFun))
-
-let devArrFun = entries.map(i=>{
-    return devFun.bind(null,i.name,i.entry)
-})
 
 gulp.task('js:dev',gulp.parallel(devArrFun))
 
