@@ -32,7 +32,6 @@
         "gulp-if": "^2.0.2",
         "gulp-imagemin": "^5.0.3",
         "gulp-md5-plus": "^1.0.3",
-        "gulp-minify-html": "^1.0.6",
         "gulp-postcss": "^8.0.0",
         "gulp-rename": "^1.4.0",
         "gulp-replace": "^1.0.0",
@@ -53,6 +52,7 @@
         "@babel/polyfill": "^7.2.5",
         "@babel/runtime": "^7.2.0",
         "@babel/runtime-corejs2": "^7.2.0",
+        "gulp-htmlmin": "^5.0.1",
         "jsonfile": "^5.0.0"
     }
 }

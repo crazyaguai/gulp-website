@@ -1,5 +1,6 @@
 import gulp from 'gulp';
 import replace from 'gulp-replace';
+const htmlmin = require('gulp-htmlmin');
 import minifyHtml from 'gulp-minify-html';
 var fs = require('fs')
 var data = require('gulp-data')
@@ -49,6 +50,7 @@ gulp.task('html:dev',gulp.parallel(htmlDevArr))
 gulp.task('html:dev2dist',function () {
     return gulp
         .src('dev/*.html')
+        .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest('dist'))
 })
 
