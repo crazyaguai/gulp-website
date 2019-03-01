@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import replace from 'gulp-replace';
 const htmlmin = require('gulp-htmlmin');
-import minifyHtml from 'gulp-minify-html';
+var handleError = require('./handleError')
 var fs = require('fs')
 var data = require('gulp-data')
 var ejs = require('gulp-ejs')
@@ -29,9 +29,7 @@ function html(config){
         }))
         .pipe(replace('../imgs', './imgs'))
         .pipe(replace('../../imgs', './imgs'))
-        .pipe(ejs().on('error', function(err) {
-            console.log('ejs error:' + err)
-        }))
+        .pipe(ejs().on('error', handleError))
         .pipe(rename(config.name))
         .pipe(gulp.dest('dev'))
 }
