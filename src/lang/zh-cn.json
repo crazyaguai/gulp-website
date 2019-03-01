@@ -1,5 +1,8 @@
 {
-    "footer": "福特",
     "text": "English",
-    "indexHref": "./index-en.html"
+    "indexHref": "./index-en.html",
+    "common": {
+        "type": "1",
+        "footer": "福特"
+    }
 }

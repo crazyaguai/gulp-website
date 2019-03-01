@@ -25,7 +25,7 @@ function html(config){
     return gulp
         .src(config.entry)
         .pipe(data(function(file) {
-            return JSON.parse(fs.readFileSync(`src/lang/${config.lang}.json`));
+            return JSON.parse(fs.readFileSync(`src/lang/${config.lang}.json`))
         }))
         .pipe(replace('../imgs', './imgs'))
         .pipe(replace('../../imgs', './imgs'))
@@ -33,7 +33,7 @@ function html(config){
             console.log('ejs error:' + err)
         }))
         .pipe(rename(config.name))
-        .pipe(gulp.dest(`dev`))
+        .pipe(gulp.dest('dev'))
 }
 
 let htmlDevArr = htmlConfig.map(config=>{
