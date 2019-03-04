@@ -29,6 +29,7 @@ let entries = [
     }
 ]
 
+//使用browserify和babel打包js文件
 function makeBundle(name,entry){
     if(!bundleArr[name]){
         let b = browserify({
@@ -44,6 +45,7 @@ function makeBundle(name,entry){
     return bundleArr[name]
 }
 
+//直接打包不检测更新
 function bundle(name,entry){
     let b = makeBundle(name,entry)
     return b
@@ -52,14 +54,15 @@ function bundle(name,entry){
         .pipe(buffer())
         .pipe(replace('@img', 'img'))
         .pipe(gulp.dest('dev/js'))
-        .pipe(gulpif(devServer,global.browserSync.reload({stream: true})))
+        .pipe(gulpif(devServer,global.browserSync.reload({stream: true})))//文件变化刷新浏览器
 }
 
-//开发环境
-let devArrFun = entries.map(i=>{
+//开发环境打包
+let devArrFun = entries.map(i=>{//循环入口，每个文件都打包
     return devFun.bind(null,i.name,i.entry)
 })
 
+//打包js并检测更新
 function devFun(name,entry) {
 
     devServer = true
@@ -81,14 +84,16 @@ let prodArrFun = entries.map(i=>{
 
 gulp.task('js',gulp.parallel(prodArrFun))
 
+//开发环境任务
 gulp.task('js:dev',gulp.parallel(devArrFun))
 
+//将dev中文件转入dist文件夹中
 gulp.task('js:dev2dist',function () {
     return gulp.src('dev/js/*.js')
         .pipe(uglify())
         .pipe(md5(6, './dist/*.html'))
         .pipe(gulp.dest('dist/js'))
 })
-
+//生产环境任务
 gulp.task('js:prod',gulp.series('js','js:dev2dist'))
 

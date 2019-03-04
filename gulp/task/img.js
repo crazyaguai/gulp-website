@@ -25,8 +25,8 @@ gulp.task('img:dev',function () {
 gulp.task('img:dev2dist',function () {
     return gulp
         .src(srcArr)
-        .pipe(imagemin())
-        .pipe(md5(6, ['./dist/*.html', './dist/css/*.css', './dist/js/*.js']))
+        .pipe(imagemin())//压缩图片
+        .pipe(md5(6, ['./dist/*.html', './dist/css/*.css', './dist/js/*.js']))//添加hash，替换文件名
         .pipe(gulp.dest('./dist/imgs'))
 })
 
